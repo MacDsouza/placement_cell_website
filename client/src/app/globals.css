@@ -51,3 +51,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+.skeleton {
+  background-color: #393939;
+  background-image: linear-gradient(
+    105deg,
+    transparent 0%,
+    transparent 40%,
+    #656565 50%,
+    transparent 60%,
+    transparent 100%
+  );
+}
