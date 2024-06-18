@@ -1,6 +1,6 @@
 // page.jsx
 "use client";
-import React from "react";
+import React, {useState} from "react";
 import DriveCard from "@/components/driveCard";
 // import Data from "../../public/data";
 import supabase from "@/data/supabase";
@@ -11,7 +11,7 @@ import { LoginContext } from "@/context";
 const Home = () => {
   const [placements, setPlacements] = React.useState([]);
   const { userRole, setUserRole } = useContext(LoginContext);
-  const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = useState(true);
   // const { userRole } = useRoleContext();
 
   React.useEffect(() => {
@@ -48,7 +48,7 @@ const Home = () => {
         <div className="font-gabarito lg:flex w-full mt-10 mb-10 justify-center items-center flex-col bg-background-clr overflow-y-auto sm: flex l">
           <section className="lg:w-2/3 sm: w-3/4 ">
             <div className="flex flex-row justify-evenly">
-            <div className="skeleton lg:w-1/3 w-1/3 h-10 rounded-lg mb-3 mr-2"></div>
+              <div className="skeleton lg:w-1/3 w-1/3 h-10 rounded-lg mb-3 mr-2"></div>
               <hr className="w-full border-white place-content-center mt-4" />
             </div>
             <div className="flex flex-col lg:flex-row gap-8 mb-4 mx-auto">
@@ -59,7 +59,7 @@ const Home = () => {
 
           <section className="lg:w-2/3 sm: w-3/4">
             <div className="flex flex-row">
-            <div className="skeleton lg:w-1/3 w-1/3 h-10 rounded-lg mb-3 mr-2"></div>
+              <div className="skeleton lg:w-1/3 w-1/3 h-10 rounded-lg mb-3 mr-2"></div>
               <hr className="w-full border-white place-content-center mt-4" />
             </div>
             <div className="flex flex-col lg:flex-row gap-8 mb-4 mx-auto">
