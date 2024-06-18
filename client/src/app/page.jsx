@@ -45,27 +45,10 @@ const Home = () => {
   return (
     <>
       {loading ? (
-        <div className="font-gabarito lg:flex w-full mt-10 justify-center items-center flex-col bg-background-clr overflow-y-auto sm: flex l">
-          {userRole === 3 && (
-            <section className="lg:w-2/3 sm: w-3/4">
-              <div className="flex flex-row justify-evenly">
-                <h1 className="text-3xl font-bold text-white mb-6 mr-4 text-nowrap">
-                  Drafts
-                </h1>
-                <hr className="w-full border-white place-content-center mt-4" />
-              </div>
-              <div className="flex flex-col lg:flex-row gap-8 mb-4 mx-auto">
-                <div className="skeleton lg:w-1/2 h-64 rounded-lg"></div>
-                <div className="skeleton lg:w-1/2 h-64 rounded-lg"></div>
-              </div>
-            </section>
-          )}
-
+        <div className="font-gabarito lg:flex w-full mt-10 mb-10 justify-center items-center flex-col bg-background-clr overflow-y-auto sm: flex l">
           <section className="lg:w-2/3 sm: w-3/4 ">
             <div className="flex flex-row justify-evenly">
-              <h1 className="text-3xl font-bold text-white mb-6 mr-4 text-nowrap">
-                Ongoing
-              </h1>
+            <div className="skeleton lg:w-1/3 w-1/3 h-10 rounded-lg mb-3 mr-2"></div>
               <hr className="w-full border-white place-content-center mt-4" />
             </div>
             <div className="flex flex-col lg:flex-row gap-8 mb-4 mx-auto">
@@ -76,9 +59,7 @@ const Home = () => {
 
           <section className="lg:w-2/3 sm: w-3/4">
             <div className="flex flex-row">
-              <h1 className="text-3xl font-bold text-white mb-6 mr-4">
-                Upcoming
-              </h1>
+            <div className="skeleton lg:w-1/3 w-1/3 h-10 rounded-lg mb-3 mr-2"></div>
               <hr className="w-full border-white place-content-center mt-4" />
             </div>
             <div className="flex flex-col lg:flex-row gap-8 mb-4 mx-auto">
@@ -86,23 +67,6 @@ const Home = () => {
               <div className="skeleton lg:w-1/2 h-64 rounded-lg"></div>
             </div>
           </section>
-
-          <section className="lg:w-2/3 sm: w-3/4">
-            <div className="flex flex-row justify-evenly">
-              <h1 className="text-3xl font-bold text-white mb-6 mr-4 text-nowrap">
-                Past Placements
-              </h1>
-              <hr className="w-full border-white place-content-center mt-4" />
-            </div>
-            <div className="flex flex-col lg:flex-row gap-8 mb-4 mx-auto">
-              <div className="skeleton lg:w-1/2 h-64 rounded-lg"></div>
-              <div className="skeleton lg:w-1/2 h-64 rounded-lg"></div>
-            </div>
-          </section>
-
-          <div className="w-2/3 mb-6">
-            <h1 className="text-3xl font-bold text-white mb-4"></h1>
-          </div>
         </div>
       ) : (
         <div className="font-gabarito lg:flex w-full mt-10 justify-center items-center flex-col bg-background-clr overflow-y-auto sm: flex l">
