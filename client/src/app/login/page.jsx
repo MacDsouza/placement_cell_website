@@ -14,6 +14,7 @@ const login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+  const [loading, setLoading] = useState(false);
   //   const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const router = useRouter();
   useEffect(() => {
@@ -30,14 +31,17 @@ const login = () => {
   }, []);
 
   const handleLogin = () => {
+    setLoading(true);
     const emailRegex = /@sjec\.ac\.in/;
 
     if (email.trim() === "" || password.trim() === "") {
       setErrorMessage(
         "Invalid Credentials: Email and password cannot be empty."
       );
+      setLoading(false);
     } else if (!emailRegex.test(email)) {
       setErrorMessage("Invalid Credentials: Entered email is incorrect.");
+      setLoading(false);
     } else {
       // Perform login logic here
       setErrorMessage(""); // Clear error message if login is successful
@@ -133,13 +137,20 @@ const login = () => {
             </Link>
           </div>
 
-          <button
-            type="submit"
-            className=" text-white py-2 px-4 rounded w-full mb-4 bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-opacity-50 "
-            onClick={handleLogin}
-          >
-            Login
+          {loading ? (
+            <button className="btn btn-square w-full bg-green-600 border-0 pointer-events-none">
+            <span className="loading loading-spinner bg-white"></span>
           </button>
+          ) : (
+            <button
+              type="submit"
+              className=" text-white py-2 px-4 rounded w-full mb-4 bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-opacity-50 "
+              onClick={handleLogin}
+            >
+              Login
+            </button>
+          )}
+          
           {errorMessage && (
             <p className="text-red-500 mb-4 text-center">{errorMessage}</p>
           )}

@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import supabase from "@/data/supabase";
 import { useRouter } from "next/router";
+import { hatch } from "ldrs";
+
+hatch.register();
 
 const Registrations = () => {
   const pathName = usePathname();
@@ -11,6 +14,7 @@ const Registrations = () => {
   const [drive, setDrive] = useState([]);
   const [registrations, setRegistrations] = useState([]);
   const [questions, setQuestions] = useState([{}]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchRegistrations = async () => {
@@ -23,62 +27,69 @@ const Registrations = () => {
         if (data.length != 0) {
           setDrive(data[0].role_id.drive_id.name);
           setQuestions(data[0].role_id.drive_id);
+          setLoading(false);
         } else {
           setDrive("No Registrations Yet!");
+          setLoading(false);
         }
       } else {
         console.log("error", error);
       }
     };
-
     fetchRegistrations();
   }, []);
 
   return (
     <>
-      <div className="p-8 m-5 font-gabarito">
-        <h1 className="text-3xl font-bold py-4">{drive}</h1>
-        <div className="overflow-x-auto">
-          <table className="table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>USN</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Branch</th>
-                <th>Year</th>
-                <th>Semester</th>
-                <th>Role Registered</th>
-                <th>{questions.que1}</th>
-                <th>{questions.que2}</th>
-                <th>{questions.que3}</th>
-                <th>{questions.que4}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {registrations.map((reg, index) => {
-                return (
-                  <tr key={index} className="hover">
-                    <td>{index + 1}</td>
-                    <td>{reg.student_id.usn}</td>
-                    <td>{reg.student_id.name}</td>
-                    <td>{reg.student_id.email}</td>
-                    <td>{reg.student_id.branch}</td>
-                    <td>{reg.student_id.year}</td>
-                    <td>{reg.student_id.sem}</td>
-                    <td>{reg.role_id.name}</td>
-                    <td>{reg.ans1}</td>
-                    <td>{reg.ans2}</td>
-                    <td>{reg.ans3}</td>
-                    <td>{reg.ans4}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+      {loading ? (
+        <div className="flex items-center justify-center h-screen">
+          <l-hatch size="28" stroke="4" speed="3.5" color="#22c55e"></l-hatch>
         </div>
-      </div>
+      ) : (
+        <div className="p-8 m-5 font-gabarito">
+          <h1 className="text-3xl font-bold py-4">{drive}</h1>
+          <div className="overflow-x-auto">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>USN</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Branch</th>
+                  <th>Year</th>
+                  <th>Semester</th>
+                  <th>Role Registered</th>
+                  <th>{questions.que1}</th>
+                  <th>{questions.que2}</th>
+                  <th>{questions.que3}</th>
+                  <th>{questions.que4}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {registrations.map((reg, index) => {
+                  return (
+                    <tr key={index} className="hover">
+                      <td>{index + 1}</td>
+                      <td>{reg.student_id.usn}</td>
+                      <td>{reg.student_id.name}</td>
+                      <td>{reg.student_id.email}</td>
+                      <td>{reg.student_id.branch}</td>
+                      <td>{reg.student_id.year}</td>
+                      <td>{reg.student_id.sem}</td>
+                      <td>{reg.role_id.name}</td>
+                      <td>{reg.ans1}</td>
+                      <td>{reg.ans2}</td>
+                      <td>{reg.ans3}</td>
+                      <td>{reg.ans4}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
     </>
   );
 };

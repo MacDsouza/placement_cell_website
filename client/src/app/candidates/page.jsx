@@ -42,7 +42,7 @@ const candidates = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1500);
   }, []);
 
   const handleSearch = (event) => {
