@@ -8,9 +8,14 @@ import { usePathname } from "next/navigation";
 import { Suspense } from "react";
 import { hatch } from "ldrs";
 
-hatch.register();
-
 const CreateDrivePage = () => {
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      hatch.register();
+    }
+  }, []);
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <CreateDriveForm />

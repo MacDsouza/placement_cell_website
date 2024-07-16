@@ -4,8 +4,6 @@ import { useRouter } from "next/navigation";
 import supabase from "@/data/supabase";
 import { hatch } from "ldrs";
 
-hatch.register();
-
 const ProfileComponent = ({ routePrefix, isVerify, onUidChange, student }) => {
   const router = useRouter();
   const pathName = usePathname();
@@ -33,6 +31,11 @@ const ProfileComponent = ({ routePrefix, isVerify, onUidChange, student }) => {
 
   const [academicsExists, setAcademicsExists] = useState(false);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      hatch.register();
+    }
+  }, []);
   //For spinner
   useEffect(() => {
     setLoading(true);

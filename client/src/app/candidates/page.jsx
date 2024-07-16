@@ -7,8 +7,6 @@ import { hatch } from "ldrs";
 // import CandidateTestData from "../../../public/CandidateTestData.js";
 import Dropdown from "../../components/DropdownFilter.jsx";
 
-hatch.register();
-
 //Filter options
 const CGPA = ["5.0", "6.0", "7.0", "8.0", "9.0", "10.0"];
 const Branch = ["CSE", "CSE - DS", "ECE", "EEE", "MECH", "CIVIL", "CSBS"];
@@ -36,6 +34,12 @@ const candidates = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [originalData, setOriginalData] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      hatch.register();
+    }
+  }, []);
 
   //For spinner
   useEffect(() => {
