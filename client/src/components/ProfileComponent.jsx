@@ -36,13 +36,6 @@ const ProfileComponent = ({ routePrefix, isVerify, onUidChange, student }) => {
       hatch.register();
     }
   }, []);
-  //For spinner
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
 
   useEffect(() => {
     const fetchUserData = async (uid) => {
@@ -74,6 +67,7 @@ const ProfileComponent = ({ routePrefix, isVerify, onUidChange, student }) => {
       } catch (error) {
         console.error("Error fetching student data:", error.message);
       }
+      setLoading(false);
     };
 
     const checkUserStatus = async () => {
@@ -129,6 +123,7 @@ const ProfileComponent = ({ routePrefix, isVerify, onUidChange, student }) => {
       };
 
       fetchAcademicsData();
+      
     }
   }, [student]);
 

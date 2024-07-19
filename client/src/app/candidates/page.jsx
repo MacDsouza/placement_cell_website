@@ -33,20 +33,12 @@ const candidates = () => {
   const [selectedSkillsOptions, setSelectedSkillsOptions] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [originalData, setOriginalData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       hatch.register();
     }
-  }, []);
-
-  //For spinner
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 1500);
   }, []);
 
   const handleSearch = (event) => {
@@ -91,6 +83,7 @@ const candidates = () => {
       if (!error) {
         setOriginalData(data);
         setFilteredData(data);
+        setLoading(false)
       }
     };
     fetchPlacement();
